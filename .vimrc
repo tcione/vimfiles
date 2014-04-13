@@ -93,7 +93,7 @@ set laststatus=2
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
 " Show white spaces
-set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set list
 
 " Enable syntax highlighting
@@ -169,5 +169,14 @@ call vundle#rc()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/vundle'
 
+" My plugins
+Plugin 'sickill/vim-monokai'
+
 
 filetype plugin indent on
+
+""""""""""""""""""""""""""""""""""""""
+" Post plugin config
+""""""""""""""""""""""""""""""""""""""
+
+colorscheme monokai
