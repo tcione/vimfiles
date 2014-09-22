@@ -63,6 +63,8 @@ map <leader>s? z=
 " Show line numbers
 set number
 
+set guifont=Fira\ Mono:h18
+
 " WiLd menu for autocompletion
 set wildmode=longest:full
 set wildmenu
@@ -93,7 +95,7 @@ set laststatus=2
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
 " Show white spaces
-set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<
 set list
 
 " Enable syntax highlighting
@@ -109,17 +111,19 @@ set expandtab
 set smarttab
 
 " 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
-
-" Linebreak on 500 characters
-set lbr
-set tw=500
+set shiftwidth=2
+set tabstop=2
 
 set ai "Auto indent
 set si "Smart indent
-set wrap "Wrap lines
+set wrap
 
+" Linebreak on 500 characters
+set linebreak
+set tw=1000
+set wm=2
+
+command! -nargs=* Wrap set wrap linebreak nolist
 """""""""""""""""""""""""""""""""""""
 " Moving around
 """""""""""""""""""""""""""""""""""""
@@ -135,6 +139,9 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+map <leader>r :TagbarToggle<cr>
+map <C-k><C-b> :NERDTreeToggle<cr>
+map <leader>fi g=GG
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
@@ -161,17 +168,59 @@ endfunction
 """"""""""""""""""""""""""""""""""""""
 " Plugin stuff
 """"""""""""""""""""""""""""""""""""""
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+Plugin 'gmarik/Vundle.vim'
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/vundle'
+" Utilities
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'vim-scripts/PreserveNoEOL'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'scrooloose/nerdcommenter'
 
-" My plugins
+"- Sublime like multiple cursors
+"  Use ctrl-p ;)
+Plugin 'terryma/vim-multiple-cursors'
+
+" Editor customization
+Plugin 'flazz/vim-colorschemes'
+Plugin 'bling/vim-airline'
 Plugin 'sickill/vim-monokai'
+Plugin 'Yggdroot/indentLine'
 
+" Nav and code visualization
+Plugin 'wincent/Command-T'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'majutsushi/tagbar'
+Plugin 'vim-scripts/vim-misc'
+Plugin 'xolox/vim-easytags'
+Plugin 'mileszs/ack.vim'
+
+" Auto/code completion
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+
+" Syntax stuff
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'stephpy/vim-yaml'
+
+" HTML Related
+Plugin 'mattn/emmet-vim'
+Plugin 'edsono/vim-matchit'
+Plugin 'tpope/vim-surround'
+Plugin 'xsbeats/vim-blade.git'
+Plugin 'othree/html5.vim'
+Plugin 'gregsexton/MatchTag'
+
+call vundle#end()
 
 filetype plugin indent on
 
@@ -179,4 +228,21 @@ filetype plugin indent on
 " Post plugin config
 """"""""""""""""""""""""""""""""""""""
 
-colorscheme monokai
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+let g:airline_theme='simple'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+"
+let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
+
+let g:tagbar_width=26
+
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
+
+let g:tagbar_ctags_bin='/usr/local/bin/ctags'
+colorscheme molokai
+
