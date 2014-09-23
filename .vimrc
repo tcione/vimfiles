@@ -240,6 +240,8 @@ let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 
 let g:tagbar_width=26
 
+let NERDTreeShowHidden=1
+
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
