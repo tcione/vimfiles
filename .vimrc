@@ -238,6 +238,9 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
+
 let g:tagbar_width=26
 
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
