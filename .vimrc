@@ -211,6 +211,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'stephpy/vim-yaml'
+Plugin 'mustache/vim-mustache-handlebars'
 
 " HTML Related
 Plugin 'mattn/emmet-vim'
