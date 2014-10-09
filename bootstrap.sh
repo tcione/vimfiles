@@ -1,16 +1,17 @@
+#!/bin/bash
+
 git pull origin master
 
 function doIt() {
     rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" \
         --exclude "README.md" --exclude "LICENSE-MIT.txt" -av --no-perms . ~
 
-    if [ ! -d "~/.vim/bundle/" ]; then
-      mkdir -p ~/.vim/bundle
-      git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    if [ ! -d "$HOME/.vim/bundle/" ]; then
+      mkdir -p "$HOME/.vim/bundle"
+      git clone https://github.com/gmarik/Vundle.vim.git "$HOME/.vim/bundle/Vundle.vim"
     fi
 
-    vim +PluginInstall +qall
-    vim +PluginUpdate +qall
+    vim +PluginInstall! +PluginClean! +qall
 }
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
     doIt
