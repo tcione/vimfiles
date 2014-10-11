@@ -246,6 +246,11 @@ let g:tagbar_width=26
 
 let NERDTreeShowHidden=1
 
+let g:NERDCustomDelimiters = {
+  \ 'python' : { 'left': '# ', 'leftAlt': '', 'rightAlt': '' },
+  \ 'ruby' : { 'left': '# ', 'leftAlt': '', 'rightAlt': '' }
+\ }
+
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
