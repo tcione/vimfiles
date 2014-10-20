@@ -70,7 +70,21 @@ set wildmode=longest:full
 set wildmenu
 
 " Files ignored by WiLd
-" set wildignore=*.o
+set wildignore=**/.git/*
+set wildignore+=vendor/*
+set wildignore+=*.jpg
+set wildignore+=*.jpeg
+set wildignore+=*.png
+set wildignore+=*.gif
+set wildignore+=*.mov
+set wildignore+=*.mp4
+set wildignore+=*.svg
+set wildignore+=**/tmp/*
+set wildignore+=*.eot
+set wildignore+=*.ttf
+set wildignore+=*.woff
+set wildignore+=*.js.gz
+set wildignore+=*.css.gz
 
 " Backspace working as it should
 set backspace=eol,start,indent
