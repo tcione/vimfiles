@@ -101,6 +101,7 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
+set synmaxcol=120
 
 " Always show the status line
 set laststatus=2
@@ -234,6 +235,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'xsbeats/vim-blade.git'
 Plugin 'othree/html5.vim'
 Plugin 'gregsexton/MatchTag'
+Plugin 'Townk/vim-autoclose'
 
 call vundle#end()
 
