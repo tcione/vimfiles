@@ -235,7 +235,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'xsbeats/vim-blade.git'
 Plugin 'othree/html5.vim'
 Plugin 'gregsexton/MatchTag'
-Plugin 'Townk/vim-autoclose'
 
 call vundle#end()
 
