@@ -223,6 +223,7 @@ Plugin 'honza/vim-snippets'
 " Syntax stuff
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-haml'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'stephpy/vim-yaml'
