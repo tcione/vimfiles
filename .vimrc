@@ -234,7 +234,7 @@ Plugin 'stephpy/vim-yaml'
 Plugin 'moll/vim-node'
 Plugin 'walm/jshint.vim'
 Plugin 'jelera/vim-javascript-syntax'
-Plugin 'javascript-libraries-syntax.vim'
+Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'vim-scripts/JavaScript-Indent'
 Plugin 'marijnh/tern_for_vim'
 
