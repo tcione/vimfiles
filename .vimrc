@@ -196,7 +196,6 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'scrooloose/nerdcommenter'
 
 "- Sublime like multiple cursors
-"  Use ctrl-p ;)
 Plugin 'terryma/vim-multiple-cursors'
 
 " Editor customization
@@ -221,13 +220,23 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 
 " Syntax stuff
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+
+" Ruby Stuff
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-haml'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
 Plugin 'stephpy/vim-yaml'
-Plugin 'mustache/vim-mustache-handlebars'
+
+" JS Stuff
+Plugin 'moll/vim-node'
+Plugin 'walm/jshint.vim'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'javascript-libraries-syntax.vim'
+Plugin 'vim-scripts/JavaScript-Indent'
+Plugin 'marijnh/tern_for_vim'
 
 " HTML Related
 Plugin 'mattn/emmet-vim'
