@@ -194,6 +194,7 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'vim-scripts/PreserveNoEOL'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'freitass/todo.txt-vim'
 
 "- Sublime like multiple cursors
 Plugin 'terryma/vim-multiple-cursors'
