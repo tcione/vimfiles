@@ -243,7 +243,7 @@ Plugin 'marijnh/tern_for_vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'edsono/vim-matchit'
 Plugin 'tpope/vim-surround'
-Plugin 'xsbeats/vim-blade.git'
+Plugin 'xsbeats/vim-blade'
 Plugin 'othree/html5.vim'
 Plugin 'gregsexton/MatchTag'
 
