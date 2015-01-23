@@ -256,6 +256,8 @@ filetype plugin indent on
 """"""""""""""""""""""""""""""""""""""
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost README set filetype=markdown
+autocmd BufNewFile,BufReadPost *.blade.php set filetype=blade
 
 let g:airline_theme='simple'
 let g:airline#extensions#tabline#enabled = 1
