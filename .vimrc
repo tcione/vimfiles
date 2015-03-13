@@ -225,6 +225,7 @@ Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'pld-linux/vim-syntax-vcl'
+Plugin 'evidens/vim-twig'
 
 " Ruby Stuff
 Plugin 'vim-ruby/vim-ruby'
