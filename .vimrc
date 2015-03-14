@@ -72,6 +72,9 @@ set wildmenu
 " Files ignored by WiLd
 set wildignore=**/.git/*
 set wildignore+=vendor/*
+set wildignore+=**/vendor/*
+set wildignore+=**/node_modules/*
+set wildignore+=**/bower_components/*
 set wildignore+=*.jpg
 set wildignore+=*.jpeg
 set wildignore+=*.png
