@@ -219,6 +219,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
+Plugin 'shawncplus/phpcomplete.vim'
 
 " Syntax stuff
 Plugin 'cakebaker/scss-syntax.vim'
