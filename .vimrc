@@ -265,6 +265,7 @@ filetype plugin indent on
 """"""""""""""""""""""""""""""""""""""
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost *.exs set filetype=elixir
 autocmd BufNewFile,BufReadPost README set filetype=markdown
 autocmd BufNewFile,BufReadPost *.blade.php set filetype=blade
 
