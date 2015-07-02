@@ -232,6 +232,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'pld-linux/vim-syntax-vcl'
 Plugin 'evidens/vim-twig'
+Plugin 'elixir-lang/vim-elixir'
 
 " Ruby Stuff
 Plugin 'vim-ruby/vim-ruby'
