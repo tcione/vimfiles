@@ -292,9 +292,20 @@ let g:NERDCustomDelimiters = {
   \ 'ruby' : { 'left': '# ', 'leftAlt': '', 'rightAlt': '' }
 \ }
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
 let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 colorscheme molokai
+
+
 
