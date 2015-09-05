@@ -233,6 +233,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'pld-linux/vim-syntax-vcl'
 Plugin 'evidens/vim-twig'
 Plugin 'elixir-lang/vim-elixir'
+Plugin 'scrooloose/syntastic'
 
 " Ruby Stuff
 Plugin 'vim-ruby/vim-ruby'
