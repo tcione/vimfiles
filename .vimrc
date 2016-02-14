@@ -73,7 +73,7 @@ set wildmenu
 set wildignore=**/.git/*
 set wildignore+=vendor/*
 set wildignore+=**/vendor/*
-set wildignore+=**/plugins/*
+" set wildignore+=**/plugins/*
 set wildignore+=**/platforms/*
 set wildignore+=**/node_modules/*
 set wildignore+=**/bower_components/*
@@ -206,12 +206,13 @@ Plugin 'terryma/vim-multiple-cursors'
 
 " Editor customization
 Plugin 'flazz/vim-colorschemes'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'sickill/vim-monokai'
 Plugin 'Yggdroot/indentLine'
 
 " Nav and code visualization
-Plugin 'wincent/Command-T'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
@@ -268,7 +269,7 @@ filetype plugin indent on
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.exs set filetype=elixir
 autocmd BufNewFile,BufReadPost *.ex set filetype=elixir
-autocmd BufNewFile,BufReadPost *.eex set filetype=eelixir
+autocmd BufNewFile,BufReadPost *.eex set filetype=elixir
 autocmd BufNewFile,BufReadPost README set filetype=markdown
 autocmd BufNewFile,BufReadPost *.blade.php set filetype=blade
 
