@@ -226,6 +226,8 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'tpope/vim-endwise'
 
 " Syntax stuff
 Plugin 'cakebaker/scss-syntax.vim'
