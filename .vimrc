@@ -237,6 +237,7 @@ Plugin 'pld-linux/vim-syntax-vcl'
 Plugin 'evidens/vim-twig'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'scrooloose/syntastic'
+Plugin 'rizzatti/dash.vim'
 
 " Ruby Stuff
 Plugin 'vim-ruby/vim-ruby'
