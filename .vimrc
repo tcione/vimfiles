@@ -21,6 +21,7 @@ set autoread
 " Remap leader for nice combos
 let mapleader = ","
 let g:mapleader = ","
+let maplocalleader = "\\"
 
 " Friendly saving
 nmap <leader>w :w!<cr>
@@ -276,6 +277,7 @@ autocmd BufNewFile,BufReadPost *.ex set filetype=elixir
 autocmd BufNewFile,BufReadPost *.eex set filetype=elixir
 autocmd BufNewFile,BufReadPost README set filetype=markdown
 autocmd BufNewFile,BufReadPost *.blade.php set filetype=blade
+autocmd BufNewFile,BufReadPost todo.txt set filetype=todo
 
 let g:airline_theme='simple'
 let g:airline#extensions#tabline#enabled = 1
