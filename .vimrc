@@ -202,6 +202,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'freitass/todo.txt-vim'
 Plugin 'elentok/todo.vim'
+Plugin 'xolox/vim-notes'
 
 "- Sublime like multiple cursors
 Plugin 'terryma/vim-multiple-cursors'
@@ -315,5 +316,4 @@ match OverLength /\%81v.\+/
 let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 colorscheme molokai
 
-
-
+let g:notes_directories = ['~/Documents/Notes', '~/Dropbox/Shared Notes']
