@@ -226,6 +226,7 @@ Plugin 'mileszs/ack.vim'
 
 " Auto/code completion
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'shawncplus/phpcomplete.vim'
