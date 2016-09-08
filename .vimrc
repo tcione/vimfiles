@@ -232,6 +232,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-endwise'
+Plugin 'isRuslan/vim-es6'
 
 " Syntax stuff
 Plugin 'cakebaker/scss-syntax.vim'
