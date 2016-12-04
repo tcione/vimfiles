@@ -254,14 +254,16 @@ Plugin 'stephpy/vim-yaml'
 " JS Stuff
 Plugin 'moll/vim-node'
 Plugin 'walm/jshint.vim'
-Plugin 'jelera/vim-javascript-syntax'
+" Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'vim-scripts/JavaScript-Indent'
 Plugin 'marijnh/tern_for_vim'
 
 " HTML Related
 Plugin 'mattn/emmet-vim'
-Plugin 'edsono/vim-matchit'
+Plugin 'tmhedberg/matchit'
 Plugin 'tpope/vim-surround'
 Plugin 'xsbeats/vim-blade'
 Plugin 'othree/html5.vim'
