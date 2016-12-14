@@ -233,41 +233,27 @@ Plugin 'honza/vim-snippets'
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-endwise'
-Plugin 'isRuslan/vim-es6'
 
 " Syntax stuff
-Plugin 'cakebaker/scss-syntax.vim'
+" Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'pld-linux/vim-syntax-vcl'
-Plugin 'evidens/vim-twig'
-Plugin 'elixir-lang/vim-elixir'
 Plugin 'scrooloose/syntastic'
 Plugin 'rizzatti/dash.vim'
 
 " Ruby Stuff
-Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-haml'
-Plugin 'stephpy/vim-yaml'
 
 " JS Stuff
-Plugin 'moll/vim-node'
 Plugin 'walm/jshint.vim'
-" Plugin 'jelera/vim-javascript-syntax'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'vim-scripts/JavaScript-Indent'
 Plugin 'marijnh/tern_for_vim'
 
 " HTML Related
 Plugin 'mattn/emmet-vim'
 Plugin 'tmhedberg/matchit'
 Plugin 'tpope/vim-surround'
-Plugin 'xsbeats/vim-blade'
-Plugin 'othree/html5.vim'
 Plugin 'gregsexton/MatchTag'
+
+Plugin 'sheerun/vim-polyglot'
 
 call vundle#end()
 
@@ -284,6 +270,7 @@ autocmd BufNewFile,BufReadPost *.eex set filetype=elixir
 autocmd BufNewFile,BufReadPost README set filetype=markdown
 autocmd BufNewFile,BufReadPost *.blade.php set filetype=blade
 autocmd BufNewFile,BufReadPost todo.txt set filetype=todo
+autocmd BufNewFile,BufReadPost *.hbs set filetype=html syntax=mustache
 
 let g:airline_theme='simple'
 let g:airline#extensions#tabline#enabled = 1
@@ -322,3 +309,5 @@ let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 colorscheme molokai
 
 let g:notes_directories = ['~/Documents/Notes', '~/Dropbox/Shared Notes']
+
+let g:jsx_ext_required = 0
