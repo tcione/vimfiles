@@ -17,6 +17,7 @@ set history=700
 
 " Update file when changed outside vim
 set autoread
+set clipboard=unnamed
 
 " Remap leader for nice combos
 let mapleader = ","
