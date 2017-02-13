@@ -240,6 +240,7 @@ Plugin 'tpope/vim-endwise'
 Plugin 'godlygeek/tabular'
 Plugin 'scrooloose/syntastic'
 Plugin 'rizzatti/dash.vim'
+Plugin 'ngmy/vim-rubocop'
 
 " Ruby Stuff
 Plugin 'tpope/vim-rails'
