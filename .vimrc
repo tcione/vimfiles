@@ -256,6 +256,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'gregsexton/MatchTag'
 
 Plugin 'sheerun/vim-polyglot'
+Plugin 'maxMEllon/vim-jsx-pretty'
 
 call vundle#end()
 
@@ -309,7 +310,5 @@ match OverLength /\%81v.\+/
 
 let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 colorscheme molokai
-
-let g:notes_directories = ['~/Documents/Notes', '~/Dropbox/Shared Notes']
 
 let g:jsx_ext_required = 0
