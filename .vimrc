@@ -312,3 +312,4 @@ let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 colorscheme molokai
 
 let g:jsx_ext_required = 0
+let g:ctrlp_max_files=0
