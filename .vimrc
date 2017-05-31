@@ -162,7 +162,7 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 map <leader>r :TagbarToggle<cr>
-map <C-k><C-b> :NERDTreeToggle<cr>
+map <C-k><C-b> :Explore<cr>
 map <leader>fi g=GG
 
 " Switch CWD to the directory of the open buffer
@@ -201,9 +201,10 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'vim-scripts/PreserveNoEOL'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'freitass/todo.txt-vim'
-Plugin 'elentok/todo.vim'
-Plugin 'xolox/vim-notes'
+Plugin 'tpope/vim-vinegar'
+" Plugin 'freitass/todo.txt-vim'
+" Plugin 'elentok/todo.vim'
+" Plugin 'xolox/vim-notes'
 
 "- Sublime like multiple cursors
 Plugin 'terryma/vim-multiple-cursors'
@@ -217,7 +218,7 @@ Plugin 'Yggdroot/indentLine'
 
 " Nav and code visualization
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
+" Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 "Plugin 'majutsushi/tagbar'
@@ -226,32 +227,33 @@ Plugin 'vim-scripts/vim-misc'
 Plugin 'mileszs/ack.vim'
 
 " Auto/code completion
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'OmniSharp/omnisharp-vim'
-Plugin 'tpope/vim-dispatch'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-Plugin 'shawncplus/phpcomplete.vim'
+" Plugin 'Valloric/YouCompleteMe'
+"Plugin 'OmniSharp/omnisharp-vim'
+"Plugin 'tpope/vim-dispatch'
+"Plugin 'garbas/vim-snipmate'
+"Plugin 'honza/vim-snippets'
+"Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-endwise'
 
 " Syntax stuff
 " Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'godlygeek/tabular'
-Plugin 'scrooloose/syntastic'
-Plugin 'rizzatti/dash.vim'
-Plugin 'ngmy/vim-rubocop'
+"Plugin 'scrooloose/syntastic'
+" Plugin 'rizzatti/dash.vim'
+" Plugin 'ngmy/vim-rubocop'
+Plugin 'neomake/neomake'
 
 " Ruby Stuff
 Plugin 'tpope/vim-rails'
 
 " JS Stuff
 " Plugin 'walm/jshint.vim'
-Plugin 'wookiehangover/jshint.vim'
-Plugin 'marijnh/tern_for_vim'
+" Plugin 'wookiehangover/jshint.vim'
+" Plugin 'marijnh/tern_for_vim'
 
 " HTML Related
-Plugin 'mattn/emmet-vim'
+" Plugin 'mattn/emmet-vim'
 Plugin 'tmhedberg/matchit'
 Plugin 'tpope/vim-surround'
 Plugin 'gregsexton/MatchTag'
@@ -276,11 +278,6 @@ autocmd BufNewFile,BufReadPost *.blade.php set filetype=blade
 autocmd BufNewFile,BufReadPost todo.txt set filetype=todo
 autocmd BufNewFile,BufReadPost *.hbs set filetype=html syntax=mustache
 
-let g:airline_theme='simple'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-"
 let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 
@@ -296,15 +293,15 @@ let g:NERDCustomDelimiters = {
   \ 'ruby' : { 'left': '# ', 'leftAlt': '', 'rightAlt': '' }
 \ }
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = { 'passive_filetypes': ['eruby', 'html'] }
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_mode_map = { 'passive_filetypes': ['eruby', 'html'] }
 "let g:syntastic_javascript_checkers = ['jshint']
 
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -316,8 +313,8 @@ colorscheme molokai
 let g:jsx_ext_required = 0
 let g:ctrlp_max_files=0
 let JSHintUpdateWriteOnly=1
+let g:JSHintHighlightErrorLine = 0
 
-" Taken from: https://gabri.me/blog/diy-vim-statusline
 let g:currentmode={
     \ 'n'  : 'N ',
     \ 'no' : 'N·Operator Pending ',
@@ -340,6 +337,39 @@ let g:currentmode={
     \ 't'  : 'Terminal ',
     \}
 
+" jamessan's
+" taken from: http://got-ravings.blogspot.com.br/2008/08/vim-pr0n-making-statuslines-that-own.html
+"set statusline=   " clear the statusline for when vimrc is reloaded
+"set statusline+=%-3.3n\                      " buffer number
+"set statusline+=%-3.3n\                      " buffer number
+"set statusline+=%f\                          " file name
+"set statusline+=%h%m%r%w                     " flags
+"set statusline+=[%{strlen(&ft)?&ft:'none'},  " filetype
+"set statusline+=%{strlen(&fenc)?&fenc:&enc}, " encoding
+"set statusline+=%{&fileformat}]              " file format
+"set statusline+=%=                           " right align
+ "set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\  " highlight
+"set statusline+=%b,0x%-8B\                   " current char
+"set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
+
+"function! InsertStatuslineColor(mode)
+  "if a:mode == 'i'
+    "hi statusline ctermbg=magenta
+  "elseif a:mode == 'r'
+    "hi statusline ctermbg=blue
+  "else
+    "hi statusline ctermbg=red
+  "endif
+"endfunction
+
+"au InsertEnter * call InsertStatuslineColor(v:insertmode)
+"au InsertChange * call InsertStatuslineColor(v:insertmode)
+"au InsertLeave * hi statusline ctermbg=green
+
+ "default the statusline to green when entering Vim
+"hi statusline ctermbg=green
+"
+"
 " Automatically change the statusline color depending on mode
 function! ChangeStatuslineColor()
   if (mode() =~# '\v(n|no)')
@@ -398,15 +428,15 @@ set statusline=
 set statusline+=%{ChangeStatuslineColor()}               " Changing the statusline color
 set statusline+=%0*\ %{toupper(g:currentmode[mode()])}   " Current mode
 set statusline+=%8*\ [%n]                                " buffernr
-set statusline+=%8*\ %{GitInfo()}                        " Git Branch name
+"set statusline+=%8*\ %{GitInfo()}                        " Git Branch name
 set statusline+=%8*\ %<%F\ %{ReadOnly()}\ %m\ %w\        " File+path
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}             " Syntastic errors
+"set statusline+=%{SyntasticStatuslineFlag()}             " Syntastic errors
 set statusline+=%*
 set statusline+=%9*\ %=                                  " Space
 set statusline+=%8*\ %y\                                 " FileType
 set statusline+=%7*\ %{(&fenc!=''?&fenc:&enc)}\[%{&ff}]\ " Encoding & Fileformat
-set statusline+=%8*\ %-3(%{FileSize()}%)                 " File size
+"set statusline+=%8*\ %-3(%{FileSize()}%)                 " File size
 set statusline+=%0*\ %3p%%\ l\ %l:\ %3c\                 " Rownumber/total (%)
 
 hi User1 ctermfg=007
@@ -417,3 +447,9 @@ hi User5 ctermfg=008
 hi User7 ctermfg=008
 hi User8 ctermfg=008
 hi User9 ctermfg=007
+
+hi TabLineFill ctermfg=239 ctermbg=239
+hi TabLine ctermfg=246 ctermbg=239
+hi TabLineSel ctermfg=237 ctermbg=250
+
+autocmd! BufWritePost * Neomake
