@@ -79,10 +79,10 @@ set wildignore+=**/vendor/*
 set wildignore+=**/platforms/*
 set wildignore+=**/node_modules/*
 set wildignore+=**/bower_components/*
-set wildignore+=*.jpg
-set wildignore+=*.jpeg
-set wildignore+=*.png
-set wildignore+=*.gif
+" set wildignore+=*.jpg
+" set wildignore+=*.jpeg
+" set wildignore+=*.png
+" set wildignore+=*.gif
 set wildignore+=*.mov
 set wildignore+=*.mp4
 set wildignore+=*.svg
@@ -195,71 +195,42 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 
-" Utilities
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'vim-scripts/PreserveNoEOL'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-vinegar'
-" Plugin 'freitass/todo.txt-vim'
-" Plugin 'elentok/todo.vim'
-" Plugin 'xolox/vim-notes'
-
-"- Sublime like multiple cursors
-Plugin 'terryma/vim-multiple-cursors'
-
-" Editor customization
 Plugin 'flazz/vim-colorschemes'
-"Plugin 'vim-airline/vim-airline'
-"Plugin 'vim-airline/vim-airline-themes'
 Plugin 'sickill/vim-monokai'
-Plugin 'Yggdroot/indentLine'
-
-" Nav and code visualization
+"Plugin 'Yggdroot/indentLine'
 Plugin 'ctrlpvim/ctrlp.vim'
-" Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-"Plugin 'majutsushi/tagbar'
+"Plugin 'tpope/vim-fugitive'
+"Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-scripts/vim-misc'
-"Plugin 'xolox/vim-easytags'
 Plugin 'mileszs/ack.vim'
-
-" Auto/code completion
 " Plugin 'Valloric/YouCompleteMe'
 "Plugin 'OmniSharp/omnisharp-vim'
 "Plugin 'tpope/vim-dispatch'
 "Plugin 'garbas/vim-snipmate'
 "Plugin 'honza/vim-snippets'
 "Plugin 'shawncplus/phpcomplete.vim'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'tpope/vim-endwise'
-
-" Syntax stuff
-" Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'godlygeek/tabular'
+"Plugin 'jiangmiao/auto-pairs'
+"Plugin 'tpope/vim-endwise'
+"Plugin 'godlygeek/tabular'
 "Plugin 'scrooloose/syntastic'
-" Plugin 'rizzatti/dash.vim'
-" Plugin 'ngmy/vim-rubocop'
 Plugin 'neomake/neomake'
-
-" Ruby Stuff
-Plugin 'tpope/vim-rails'
-
-" JS Stuff
-" Plugin 'walm/jshint.vim'
-" Plugin 'wookiehangover/jshint.vim'
-" Plugin 'marijnh/tern_for_vim'
-
-" HTML Related
-" Plugin 'mattn/emmet-vim'
-Plugin 'tmhedberg/matchit'
-Plugin 'tpope/vim-surround'
-Plugin 'gregsexton/MatchTag'
-
+"Plugin 'tpope/vim-rails'
+"Plugin 'tmhedberg/matchit'
+Plugin 'benjifisher/matchit.zip'
+"Plugin 'tpope/vim-surround'
+"Plugin 'gregsexton/MatchTag'
 Plugin 'sheerun/vim-polyglot'
-Plugin 'maxMEllon/vim-jsx-pretty'
+"Plugin 'maxMEllon/vim-jsx-pretty'
+"Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'neoclide/vim-jsx-improve'
 
 call vundle#end()
 
@@ -273,6 +244,7 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.exs set filetype=elixir
 autocmd BufNewFile,BufReadPost *.ex set filetype=elixir
 autocmd BufNewFile,BufReadPost *.eex set filetype=elixir
+autocmd BufNewFile,BufReadPost *.conf set filetype=nginx
 autocmd BufNewFile,BufReadPost README set filetype=markdown
 autocmd BufNewFile,BufReadPost *.blade.php set filetype=blade
 autocmd BufNewFile,BufReadPost todo.txt set filetype=todo
@@ -452,4 +424,11 @@ hi TabLineFill ctermfg=239 ctermbg=239
 hi TabLine ctermfg=246 ctermbg=239
 hi TabLineSel ctermfg=237 ctermbg=250
 
+" neomake settings
+let g:neomake_open_list=0
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_jsx_enabled_makers = ['eslint']
+
 autocmd! BufWritePost * Neomake
+
+set re=1
