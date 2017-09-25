@@ -161,7 +161,6 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-map <leader>r :TagbarToggle<cr>
 map <C-k><C-b> :Explore<cr>
 map <leader>fi g=GG
 
@@ -202,68 +201,33 @@ Plugin 'vim-scripts/PreserveNoEOL'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-vinegar'
-" Plugin 'freitass/todo.txt-vim'
-" Plugin 'elentok/todo.vim'
-" Plugin 'xolox/vim-notes'
-
-"- Sublime like multiple cursors
-Plugin 'terryma/vim-multiple-cursors'
-
-" Editor customization
 Plugin 'flazz/vim-colorschemes'
-"Plugin 'vim-airline/vim-airline'
-"Plugin 'vim-airline/vim-airline-themes'
 Plugin 'sickill/vim-monokai'
-Plugin 'Yggdroot/indentLine'
-
-" Nav and code visualization
 Plugin 'ctrlpvim/ctrlp.vim'
-" Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-"Plugin 'majutsushi/tagbar'
 Plugin 'vim-scripts/vim-misc'
-"Plugin 'xolox/vim-easytags'
 Plugin 'mileszs/ack.vim'
-
-" Auto/code completion
-" Plugin 'Valloric/YouCompleteMe'
-"Plugin 'OmniSharp/omnisharp-vim'
-"Plugin 'tpope/vim-dispatch'
-"Plugin 'garbas/vim-snipmate'
-"Plugin 'honza/vim-snippets'
-"Plugin 'shawncplus/phpcomplete.vim'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'tpope/vim-endwise'
-
-" Syntax stuff
-" Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'godlygeek/tabular'
-"Plugin 'scrooloose/syntastic'
-" Plugin 'rizzatti/dash.vim'
-" Plugin 'ngmy/vim-rubocop'
-Plugin 'neomake/neomake'
-
-" Ruby Stuff
-Plugin 'tpope/vim-rails'
-
-" JS Stuff
-" Plugin 'walm/jshint.vim'
-" Plugin 'wookiehangover/jshint.vim'
-" Plugin 'marijnh/tern_for_vim'
-
-" HTML Related
-" Plugin 'mattn/emmet-vim'
-Plugin 'tmhedberg/matchit'
-Plugin 'tpope/vim-surround'
-Plugin 'gregsexton/MatchTag'
-
 Plugin 'sheerun/vim-polyglot'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 Plugin 'maxMEllon/vim-jsx-pretty'
+Plugin 'neomake/neomake'
+Plugin 'benjifisher/matchit.zip'
+Plugin 'rizzatti/dash.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 call vundle#end()
 
+"filetype plugin on
 filetype plugin indent on
+
+"set omnifunc=syntaxcomplete#Complete
+
+"autocmd InsertEnter * set autochdir
+"autocmd InsertLeave * set noautochdir
 
 """"""""""""""""""""""""""""""""""""""
 " Post plugin config
@@ -281,39 +245,11 @@ autocmd BufNewFile,BufReadPost *.hbs set filetype=html syntax=mustache
 let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 
-let g:gitgutter_realtime = 0
-let g:gitgutter_eager = 0
-
-let g:tagbar_width=26
-
-let NERDTreeShowHidden=1
-
-let g:NERDCustomDelimiters = {
-  \ 'python' : { 'left': '# ', 'leftAlt': '', 'rightAlt': '' },
-  \ 'ruby' : { 'left': '# ', 'leftAlt': '', 'rightAlt': '' }
-\ }
-
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_mode_map = { 'passive_filetypes': ['eruby', 'html'] }
-"let g:syntastic_javascript_checkers = ['jshint']
-
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
-let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 colorscheme molokai
 
-let g:jsx_ext_required = 0
-let g:ctrlp_max_files=0
-let JSHintUpdateWriteOnly=1
-let g:JSHintHighlightErrorLine = 0
 
 let g:currentmode={
     \ 'n'  : 'N ',
@@ -337,39 +273,6 @@ let g:currentmode={
     \ 't'  : 'Terminal ',
     \}
 
-" jamessan's
-" taken from: http://got-ravings.blogspot.com.br/2008/08/vim-pr0n-making-statuslines-that-own.html
-"set statusline=   " clear the statusline for when vimrc is reloaded
-"set statusline+=%-3.3n\                      " buffer number
-"set statusline+=%-3.3n\                      " buffer number
-"set statusline+=%f\                          " file name
-"set statusline+=%h%m%r%w                     " flags
-"set statusline+=[%{strlen(&ft)?&ft:'none'},  " filetype
-"set statusline+=%{strlen(&fenc)?&fenc:&enc}, " encoding
-"set statusline+=%{&fileformat}]              " file format
-"set statusline+=%=                           " right align
- "set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\  " highlight
-"set statusline+=%b,0x%-8B\                   " current char
-"set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
-
-"function! InsertStatuslineColor(mode)
-  "if a:mode == 'i'
-    "hi statusline ctermbg=magenta
-  "elseif a:mode == 'r'
-    "hi statusline ctermbg=blue
-  "else
-    "hi statusline ctermbg=red
-  "endif
-"endfunction
-
-"au InsertEnter * call InsertStatuslineColor(v:insertmode)
-"au InsertChange * call InsertStatuslineColor(v:insertmode)
-"au InsertLeave * hi statusline ctermbg=green
-
- "default the statusline to green when entering Vim
-"hi statusline ctermbg=green
-"
-"
 " Automatically change the statusline color depending on mode
 function! ChangeStatuslineColor()
   if (mode() =~# '\v(n|no)')
@@ -452,4 +355,12 @@ hi TabLineFill ctermfg=239 ctermbg=239
 hi TabLine ctermfg=246 ctermbg=239
 hi TabLineSel ctermfg=237 ctermbg=250
 
+let g:neomake_open_list=0
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_jsx_enabled_makers = ['eslint']
+
 autocmd! BufWritePost * Neomake
+
+set re=1
+let g:jsx_ext_required = 0
+let g:ctrlp_max_files=0
