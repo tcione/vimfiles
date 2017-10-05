@@ -215,9 +215,9 @@ Plugin 'neomake/neomake'
 Plugin 'benjifisher/matchit.zip'
 Plugin 'rizzatti/dash.vim'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'SirVer/ultisnips'
+"Plugin 'honza/vim-snippets'
 
 call vundle#end()
 
