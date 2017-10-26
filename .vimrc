@@ -189,37 +189,37 @@ endfunction
 """"""""""""""""""""""""""""""""""""""
 " Plugin stuff
 """"""""""""""""""""""""""""""""""""""
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " Utilities
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'vim-scripts/PreserveNoEOL'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-vinegar'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'sickill/vim-monokai'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'vim-scripts/vim-misc'
-Plugin 'mileszs/ack.vim'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'maxMEllon/vim-jsx-pretty'
-Plugin 'neomake/neomake'
-Plugin 'benjifisher/matchit.zip'
-Plugin 'rizzatti/dash.vim'
-Plugin 'terryma/vim-multiple-cursors'
-"Plugin 'Valloric/YouCompleteMe'
-"Plugin 'SirVer/ultisnips'
-"Plugin 'honza/vim-snippets'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'vim-scripts/PreserveNoEOL'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-vinegar'
+Plug 'flazz/vim-colorschemes'
+Plug 'sickill/vim-monokai'
+"Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-scripts/vim-misc'
+Plug 'mileszs/ack.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'maxMEllon/vim-jsx-pretty'
+Plug 'neomake/neomake'
+Plug 'benjifisher/matchit.zip'
+Plug 'rizzatti/dash.vim'
+Plug 'terryma/vim-multiple-cursors'
+"Plug 'Valloric/YouCompleteMe'
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
+"Plug '/usr/local/opt/fzf'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
-call vundle#end()
+call plug#end()
 
 "filetype plugin on
 filetype plugin indent on
@@ -360,6 +360,12 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_jsx_enabled_makers = ['eslint']
 
 autocmd! BufWritePost * Neomake
+
+nmap ; :Buffers<CR>
+nmap <Leader>p :Files<CR>
+nmap <Leader>r :Tags<CR>
+
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 set re=1
 let g:jsx_ext_required = 0
