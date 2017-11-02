@@ -218,6 +218,8 @@ Plug 'terryma/vim-multiple-cursors'
 "Plug '/usr/local/opt/fzf'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-eunuch'
+Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
@@ -370,3 +372,12 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 set re=1
 let g:jsx_ext_required = 0
 let g:ctrlp_max_files=0
+
+function! ProseMode()
+  call goyo#execute(0, [])
+  set spell noci nosi noai nolist noshowmode noshowcmd
+  set complete+=s
+endfunction
+
+command! ProseMode call ProseMode()
+nmap \p :ProseMode<CR>
