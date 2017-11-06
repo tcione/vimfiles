@@ -220,6 +220,8 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'junegunn/goyo.vim'
+Plug 'majutsushi/tagbar'
+Plug 'vim-scripts/BufOnly.vim'
 
 call plug#end()
 
@@ -366,6 +368,7 @@ autocmd! BufWritePost * Neomake
 nmap ; :Buffers<CR>
 nmap <Leader>p :Files<CR>
 nmap <Leader>r :Tags<CR>
+nmap <Leader>t :TagbarToggle<CR>
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
@@ -381,3 +384,5 @@ endfunction
 
 command! ProseMode call ProseMode()
 nmap \p :ProseMode<CR>
+
+let g:fzf_tags_command = 'ctags -R --exclude=.git --exclude=log --exclude=vendor --exclude=bower_components *'
