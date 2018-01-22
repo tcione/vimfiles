@@ -108,7 +108,7 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-set synmaxcol=120
+set synmaxcol=200
 
 " Always show the status line
 set laststatus=2
@@ -223,6 +223,8 @@ Plug 'tpope/vim-eunuch'
 Plug 'junegunn/goyo.vim'
 Plug 'majutsushi/tagbar'
 Plug 'vim-scripts/BufOnly.vim'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'shawncplus/phpcomplete.vim'
 
 call plug#end()
 
@@ -387,3 +389,6 @@ command! ProseMode call ProseMode()
 nmap \p :ProseMode<CR>
 
 let g:fzf_tags_command = 'ctags -R --exclude=.git --exclude=log --exclude=vendor --exclude=bower_components *'
+"let g:ycm_key_invoke_completion = '<Tab>'
+let g:ycm_autoclose_preview_window_after_insertion = 1
+"let g:ycm_key_list_select_completion = ['<Tab>', '<Down>', '<Enter>']
