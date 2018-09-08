@@ -79,13 +79,8 @@ set wildignore+=**/vendor/*
 set wildignore+=**/platforms/*
 set wildignore+=**/node_modules/*
 set wildignore+=**/bower_components/*
-set wildignore+=*.jpg
-set wildignore+=*.jpeg
-set wildignore+=*.png
-set wildignore+=*.gif
 set wildignore+=*.mov
 set wildignore+=*.mp4
-set wildignore+=*.svg
 set wildignore+=**/tmp/*
 set wildignore+=*.eot
 set wildignore+=*.ttf
@@ -199,9 +194,8 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdcommenter'
 "Plug 'tpope/vim-vinegar'
 Plug 'ghub/vim-vinegar'
-Plug 'flazz/vim-colorschemes'
-Plug 'sickill/vim-monokai'
-"Plug 'ctrlpvim/ctrlp.vim'
+Plug 'crusoexia/vim-monokai'
+Plug 'chriskempson/base16-vim'
 Plug 'vim-scripts/vim-misc'
 Plug 'mileszs/ack.vim'
 Plug 'sheerun/vim-polyglot'
@@ -213,18 +207,17 @@ Plug 'neomake/neomake'
 Plug 'benjifisher/matchit.zip'
 Plug 'rizzatti/dash.vim'
 Plug 'terryma/vim-multiple-cursors'
-"Plug 'Valloric/YouCompleteMe'
 "Plug 'SirVer/ultisnips'
 "Plug 'honza/vim-snippets'
-"Plug '/usr/local/opt/fzf'
-Plug '/usr/local/opt/fzf'
+Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'junegunn/goyo.vim'
 Plug 'majutsushi/tagbar'
 Plug 'vim-scripts/BufOnly.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'janko-m/vim-test'
 Plug 'shawncplus/phpcomplete.vim'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer' }
 
 call plug#end()
 
@@ -255,7 +248,9 @@ let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
-colorscheme molokai
+let base16colorspace=256
+
+colorscheme base16-monokai
 
 
 let g:currentmode={
