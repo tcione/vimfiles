@@ -18,6 +18,9 @@ set history=700
 " Update file when changed outside vim
 set autoread
 set clipboard=unnamed
+set t_Co=256
+
+set termguicolors
 
 " Remap leader for nice combos
 let mapleader = ","
@@ -192,13 +195,13 @@ Plug 'tomtom/tlib_vim'
 Plug 'vim-scripts/PreserveNoEOL'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdcommenter'
-"Plug 'tpope/vim-vinegar'
-Plug 'ghub/vim-vinegar'
+Plug 'tpope/vim-vinegar'
 Plug 'crusoexia/vim-monokai'
 Plug 'chriskempson/base16-vim'
 Plug 'vim-scripts/vim-misc'
 Plug 'mileszs/ack.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
@@ -207,8 +210,8 @@ Plug 'neomake/neomake'
 Plug 'benjifisher/matchit.zip'
 Plug 'rizzatti/dash.vim'
 Plug 'terryma/vim-multiple-cursors'
-"Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-eunuch'
@@ -217,23 +220,22 @@ Plug 'majutsushi/tagbar'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'janko-m/vim-test'
 Plug 'shawncplus/phpcomplete.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 call plug#end()
 
-"filetype plugin on
 filetype plugin indent on
 
-"set omnifunc=syntaxcomplete#Complete
-
-"autocmd InsertEnter * set autochdir
-"autocmd InsertLeave * set noautochdir
+" set omnifunc=syntaxcomplete#Complete
+" autocmd InsertEnter * set autochdir
+" autocmd InsertLeave * set noautochdir
 
 """"""""""""""""""""""""""""""""""""""
 " Post plugin config
 """"""""""""""""""""""""""""""""""""""
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost *.prisma set filetype=graphql
 autocmd BufNewFile,BufReadPost *.exs set filetype=elixir
 autocmd BufNewFile,BufReadPost *.ex set filetype=elixir
 autocmd BufNewFile,BufReadPost *.eex set filetype=elixir
@@ -241,9 +243,7 @@ autocmd BufNewFile,BufReadPost README set filetype=markdown
 autocmd BufNewFile,BufReadPost *.blade.php set filetype=blade
 autocmd BufNewFile,BufReadPost todo.txt set filetype=todo
 autocmd BufNewFile,BufReadPost *.hbs set filetype=html syntax=mustache
-
-let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
+autocmd BufNewFile,BufReadPost *.axlsx set filetype=ruby
 
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
@@ -251,7 +251,6 @@ match OverLength /\%81v.\+/
 let base16colorspace=256
 
 colorscheme base16-monokai
-
 
 let g:currentmode={
     \ 'n'  : 'N ',
@@ -320,28 +319,18 @@ function! ReadOnly()
     return ''
 endfunction
 
-function! GitInfo()
-  let git = fugitive#head()
-  if git != ''
-    return '¬| '.fugitive#head()
-  else
-    return ''
-endfunction
-
 set laststatus=2
 set statusline=
 set statusline+=%{ChangeStatuslineColor()}               " Changing the statusline color
 set statusline+=%0*\ %{toupper(g:currentmode[mode()])}   " Current mode
 set statusline+=%8*\ [%n]                                " buffernr
-"set statusline+=%8*\ %{GitInfo()}                        " Git Branch name
 set statusline+=%8*\ %<%F\ %{ReadOnly()}\ %m\ %w\        " File+path
 set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}             " Syntastic errors
 set statusline+=%*
 set statusline+=%9*\ %=                                  " Space
 set statusline+=%8*\ %y\                                 " FileType
 set statusline+=%7*\ %{(&fenc!=''?&fenc:&enc)}\[%{&ff}]\ " Encoding & Fileformat
-"set statusline+=%8*\ %-3(%{FileSize()}%)                 " File size
+set statusline+=%8*\ %-3(%{FileSize()}%)                 " File size
 set statusline+=%0*\ %3p%%\ l\ %l:\ %3c\                 " Rownumber/total (%)
 
 hi User1 ctermfg=007
@@ -357,10 +346,6 @@ hi TabLineFill ctermfg=239 ctermbg=239
 hi TabLine ctermfg=246 ctermbg=239
 hi TabLineSel ctermfg=237 ctermbg=250
 
-let g:neomake_open_list=0
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_jsx_enabled_makers = ['eslint']
-
 autocmd! BufWritePost * Neomake
 
 nmap ; :Buffers<CR>
@@ -368,11 +353,19 @@ nmap <Leader>p :Files<CR>
 nmap <Leader>r :Tags<CR>
 nmap <Leader>t :TagbarToggle<CR>
 
-let g:ackprg = 'ag --nogroup --nocolor --column'
-
 set re=1
+
+let g:test#stategy = 'vimterminal'
+let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:neomake_open_list=0
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_jsx_enabled_makers = ['eslint']
 let g:jsx_ext_required = 0
 let g:ctrlp_max_files=0
+let g:fzf_tags_command = 'ctags -R --exclude=.git --exclude=log --exclude=vendor --exclude=bower_components *'
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 
 function! ProseMode()
   call goyo#execute(0, [])
@@ -383,7 +376,3 @@ endfunction
 command! ProseMode call ProseMode()
 nmap \p :ProseMode<CR>
 
-let g:fzf_tags_command = 'ctags -R --exclude=.git --exclude=log --exclude=vendor --exclude=bower_components *'
-"let g:ycm_key_invoke_completion = '<Tab>'
-let g:ycm_autoclose_preview_window_after_insertion = 1
-"let g:ycm_key_list_select_completion = ['<Tab>', '<Down>', '<Enter>']

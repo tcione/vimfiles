@@ -3,10 +3,16 @@
 git pull origin master
 
 function doIt() {
-    rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" \
-        --exclude "README.md" --exclude "LICENSE-MIT.txt" -av --no-perms . ~
+    rsync --exclude ".git/" \
+      --exclude ".DS_Store" \
+      --exclude "bootstrap.sh" \
+      --exclude "README.md" \
+      --exclude "LICENSE-MIT.txt" \
+      --exclude "autoload/" \
+      --exclude "plugin/" \
+      -av --no-perms . ~
 
-    if [ ! -d "$HOME/.vim/autoload/" ]; then
+    if [ ! -f "$HOME/.vim/autoload/plug.vim" ]; then
       curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
           https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     fi
