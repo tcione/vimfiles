@@ -8,8 +8,6 @@ function doIt() {
       --exclude "bootstrap.sh" \
       --exclude "README.md" \
       --exclude "LICENSE-MIT.txt" \
-      --exclude "autoload/" \
-      --exclude "plugin/" \
       -av --no-perms . ~
 
     if [ ! -f "$HOME/.vim/autoload/plug.vim" ]; then
