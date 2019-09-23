@@ -10,6 +10,8 @@
 set nocompatible
 filetype off
 
+set maxmempattern=5000
+
 " Lines to be remembered
 set history=700
 
@@ -74,6 +76,8 @@ set wildignore+=**/vendor/*
 set wildignore+=**/platforms/*
 set wildignore+=**/node_modules/*
 set wildignore+=**/bower_components/*
+set wildignore+=**/vcr_cassettes/*
+set wildignore+=vcr_cassettes/*
 set wildignore+=*.mov
 set wildignore+=*.mp4
 set wildignore+=**/tmp/*
@@ -132,6 +136,9 @@ set linebreak
 set tw=1000
 set wm=2
 
+" Using old regexp engine make the editor faster
+set re=1
+
 command! -nargs=* Wrap set wrap linebreak nolist
 
 """""""""""""""""""""""""""""""""""""
@@ -189,7 +196,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'crusoexia/vim-monokai'
 Plug 'danielwe/base16-vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'benjifisher/matchit.zip'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/BufOnly.vim'
@@ -221,7 +228,8 @@ Plug 'mhinz/vim-mix-format'
 " Completion
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'zxqfl/tabnine-vim'
+" Plug 'zxqfl/tabnine-vim'
+Plug 'maralla/completor.vim'
 
 " Misc
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -243,6 +251,8 @@ autocmd BufNewFile,BufReadPost *.prisma set filetype=graphql
 autocmd BufNewFile,BufReadPost README set filetype=markdown
 autocmd BufNewFile,BufReadPost todo.txt set filetype=todo
 autocmd BufNewFile,BufReadPost *.axlsx set filetype=ruby
+autocmd BufNewFile,BufReadPost *_spec.rb set filetype=rspec
+autocmd BufNewFile,BufReadPost *_context.rb set filetype=rspec
 
 """"""""""""""""""""""""""""""""""""""
 " Colors
@@ -389,17 +399,26 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 " fzf
 let g:fzf_tags_command = 'ctags -R --exclude=.git --exclude=log --exclude=vendor --exclude=bower_components *'
 
-" YCM / Tabnine
-let g:ycm_autoclose_preview_window_after_insertion = 1
+" YCM / Tabnine / Completion stuff
+let g:ycm_autoclose_preview_window_after_insertion = 2
 let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+
 
 " ale
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
+let g:ale_linters = {
+\   'javascript': ['flow-language-server'],
+\}
 
 " vim-jsx
 let g:jsx_ext_required=0
 
 " alchemist / vim-elixir
 let g:mix_format_on_save = 1
+
+" notational vim
+" let g:nv_search_paths = ['directory_path', ...]
