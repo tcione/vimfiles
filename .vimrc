@@ -43,6 +43,8 @@ set noswapfile
 
 " Remap VIM 0 to first non-blank character
 map 0 ^
+" Pressing ,ss will toggle and untoggle spell checking
+map <leader>ss :setlocal spell!<cr>
 
 " Delete trailing white space on save
 func! DeleteTrailingWS()
@@ -51,9 +53,6 @@ func! DeleteTrailingWS()
   exe "normal `z"
 endfunc
 autocmd BufWrite * :call DeleteTrailingWS()
-
-" Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
 
 """""""""""""""""""""""""""""""""""""
 " UI
@@ -130,6 +129,8 @@ set tabstop=2
 set ai "Auto indent
 set si "Smart indent
 set wrap
+set breakindent
+set breakindentopt=shift:2,min:40,sbr
 
 " Linebreak on 1000 characters
 set linebreak
@@ -196,7 +197,6 @@ Plug 'tpope/vim-vinegar'
 Plug 'crusoexia/vim-monokai'
 Plug 'danielwe/base16-vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'dense-analysis/ale'
 Plug 'benjifisher/matchit.zip'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/BufOnly.vim'
@@ -204,32 +204,16 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-scripts/PreserveNoEOL'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-abolish'
+Plug 'itchyny/lightline.vim'
+Plug 'machakann/vim-highlightedyank'
 
 " Tools
 Plug 'mileszs/ack.vim'
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'janko-m/vim-test'
-Plug 'majutsushi/tagbar'
-
-" Syntax
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'maxMEllon/vim-jsx-pretty'
-Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-Plug 'slashmili/alchemist.vim'
-Plug 'elixir-editors/vim-elixir'
-Plug 'mhinz/vim-mix-format'
-
-" Completion
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-" Plug 'zxqfl/tabnine-vim'
-Plug 'maralla/completor.vim'
 
 " Misc
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -237,6 +221,7 @@ Plug 'tomtom/tlib_vim'
 Plug 'vim-scripts/vim-misc'
 Plug 'junegunn/goyo.vim'
 Plug 'https://github.com/Alok/notational-fzf-vim'
+Plug 'pedrohdz/vim-yaml-folds'
 
 call plug#end()
 
@@ -251,8 +236,9 @@ autocmd BufNewFile,BufReadPost *.prisma set filetype=graphql
 autocmd BufNewFile,BufReadPost README set filetype=markdown
 autocmd BufNewFile,BufReadPost todo.txt set filetype=todo
 autocmd BufNewFile,BufReadPost *.axlsx set filetype=ruby
-autocmd BufNewFile,BufReadPost *_spec.rb set filetype=rspec
-autocmd BufNewFile,BufReadPost *_context.rb set filetype=rspec
+" autocmd BufNewFile,BufReadPost *_spec.rb set filetype=rspec
+" autocmd BufNewFile,BufReadPost *_context.rb set filetype=rspec
+autocmd BufNewFile,BufReadPost *.jb set filetype=ruby
 
 """"""""""""""""""""""""""""""""""""""
 " Colors
@@ -264,111 +250,12 @@ let base16colorspace=256
 
 colorscheme base16-monokai
 
-
-""""""""""""""""""""""""""""""""""""""
-" Status line config
-""""""""""""""""""""""""""""""""""""""
-let g:currentmode={
-    \ 'n'  : 'N ',
-    \ 'no' : 'N·Operator Pending ',
-    \ 'v'  : 'V ',
-    \ 'V'  : 'V·Line ',
-    \ '^V' : 'V·Block ',
-    \ 's'  : 'Select ',
-    \ 'S'  : 'S·Line ',
-    \ '^S' : 'S·Block ',
-    \ 'i'  : 'I ',
-    \ 'R'  : 'R ',
-    \ 'Rv' : 'V·Replace ',
-    \ 'c'  : 'Command ',
-    \ 'cv' : 'Vim Ex ',
-    \ 'ce' : 'Ex ',
-    \ 'r'  : 'Prompt ',
-    \ 'rm' : 'More ',
-    \ 'r?' : 'Confirm ',
-    \ '!'  : 'Shell ',
-    \ 't'  : 'Terminal ',
-    \}
-
-" Automatically change the statusline color depending on mode
-function! ChangeStatuslineColor()
-  if (mode() =~# '\v(n|no)')
-    exe 'hi! StatusLine ctermfg=008'
-  elseif (mode() =~# '\v(v|V)' || g:currentmode[mode()] ==# 'V·Block' || get(g:currentmode, mode(), '') ==# 't')
-    exe 'hi! StatusLine ctermfg=005'
-  elseif (mode() ==# 'i')
-    exe 'hi! StatusLine ctermfg=004'
-  else
-    exe 'hi! StatusLine ctermfg=006'
-  endif
-
-  return ''
-endfunction
-
-" Find out current buffer's size and output it.
-function! FileSize()
-  let bytes = getfsize(expand('%:p'))
-  if (bytes >= 1024)
-    let kbytes = bytes / 1024
-  endif
-  if (exists('kbytes') && kbytes >= 1000)
-    let mbytes = kbytes / 1000
-  endif
-
-  if bytes <= 0
-    return '0'
-  endif
-
-  if (exists('mbytes'))
-    return mbytes . 'MB '
-  elseif (exists('kbytes'))
-    return kbytes . 'KB '
-  else
-    return bytes . 'B '
-  endif
-endfunction
-
-function! ReadOnly()
-  if &readonly || !&modifiable
-    return '[RO]'
-  else
-    return ''
-endfunction
-
-set laststatus=2
-set statusline=
-set statusline+=%{ChangeStatuslineColor()}               " Changing the statusline color
-set statusline+=%0*\ %{toupper(g:currentmode[mode()])}   " Current mode
-set statusline+=%8*\ [%n]                                " buffernr
-set statusline+=%8*\ %<%F\ %{ReadOnly()}\ %m\ %w\        " File+path
-set statusline+=%#warningmsg#
-set statusline+=%*
-set statusline+=%9*\ %=                                  " Space
-set statusline+=%8*\ %y\                                 " FileType
-set statusline+=%7*\ %{(&fenc!=''?&fenc:&enc)}\[%{&ff}]\ " Encoding & Fileformat
-set statusline+=%8*\ %-3(%{FileSize()}%)                 " File size
-set statusline+=%0*\ %3p%%\ l\ %l:\ %3c\                 " Rownumber/total (%)
-
-hi User1 ctermfg=007
-hi User2 ctermfg=008
-hi User3 ctermfg=008
-hi User4 ctermfg=008
-hi User5 ctermfg=008
-hi User7 ctermfg=008
-hi User8 ctermfg=008
-hi User9 ctermfg=007
-
-hi TabLineFill ctermfg=239 ctermbg=239
-hi TabLine ctermfg=246 ctermbg=239
-hi TabLineSel ctermfg=237 ctermbg=250
-
 """"""""""""""""""""""""""""""""""""""
 " FZF shortcurts
 """"""""""""""""""""""""""""""""""""""
 nmap ; :Buffers<CR>
 nmap <Leader>p :Files<CR>
 nmap <Leader>r :Tags<CR>
-nmap <Leader>t :TagbarToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""
 " A mode for human text :D
@@ -391,34 +278,43 @@ nmap \p :ProseMode<CR>
 " vim-test
 let g:test#strategy = 'vimterminal'
 " Enable whenever working with docker
-" let g:test#ruby#rspec#executable = 'docker-compose run --rm -e RAILS_ENV=test web rspec'
+" let g:test#ruby#rspec#executable = 'docker-compose run --rm -e RAILS_ENV=test app rspec'
+" let g:test#ruby#rspec#executable = 'docker-compose exec app rspec'
 
 " ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " fzf
-let g:fzf_tags_command = 'ctags -R --exclude=.git --exclude=log --exclude=vendor --exclude=bower_components *'
+let g:fzf_tags_command = 'ctags -R --exclude=.git --exclude=log --exclude=vendor --exclude=bower_components --exclude=node_modules --exclude=vcr_cassettes *'
 
-" YCM / Tabnine / Completion stuff
-let g:ycm_autoclose_preview_window_after_insertion = 2
-let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
+" Enable C-j C-k navigation in completion
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-
-
-" ale
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
-let g:ale_linters = {
-\   'javascript': ['flow-language-server'],
-\}
 
 " vim-jsx
 let g:jsx_ext_required=0
 
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
+
 " alchemist / vim-elixir
 let g:mix_format_on_save = 1
 
+" Rust
+let g:rustfmt_autosave = 1
+
 " notational vim
-" let g:nv_search_paths = ['directory_path', ...]
+let g:nv_search_paths = ['~/Documents/Notes']
+let g:polyglot_disabled = ['markdown']
+
+set noshowmode
+let g:lightline = {
+      \ 'colorscheme': 'jellybeans',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ] ]
+      \ }
+      \ }
+
+set rtp+=/usr/local/opt/fzf
+
