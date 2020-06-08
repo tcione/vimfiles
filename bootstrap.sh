@@ -3,12 +3,9 @@
 git pull origin master
 
 function doIt() {
-    rsync --exclude ".git/" \
-      --exclude ".DS_Store" \
-      --exclude "bootstrap.sh" \
-      --exclude "README.md" \
-      --exclude "LICENSE-MIT.txt" \
-      -av --no-perms . ~
+    cp .vimrc "$HOME/.vimrc"
+    mkdir -p "$HOME/.vim"
+    cp .coc-settings "$HOME/.vim/coc-settings.json"
 
     if [ ! -f "$HOME/.vim/autoload/plug.vim" ]; then
       curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -17,10 +14,10 @@ function doIt() {
 
     vim +PlugUpgrade +PlugUpdate +PlugClean!
 }
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
+if [ "$1" == "--force" ] || [ "$1" == "-f" ]; then
     doIt
 else
-    read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1
+    read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         doIt

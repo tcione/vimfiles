@@ -204,10 +204,11 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-scripts/PreserveNoEOL'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'master'}
 Plug 'tpope/vim-abolish'
 Plug 'itchyny/lightline.vim'
 Plug 'machakann/vim-highlightedyank'
+Plug 'ap/vim-css-color'
 
 " Tools
 Plug 'mileszs/ack.vim'
@@ -222,6 +223,15 @@ Plug 'vim-scripts/vim-misc'
 Plug 'junegunn/goyo.vim'
 Plug 'https://github.com/Alok/notational-fzf-vim'
 Plug 'pedrohdz/vim-yaml-folds'
+
+" Linters/LSPs for Coc.nvim
+Plug 'amiralies/coc-flow', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-solargraph', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile'}
+Plug 'iamcco/coc-diagnostic', {'do': 'yarn install --frozen-lockfile'}
 
 call plug#end()
 

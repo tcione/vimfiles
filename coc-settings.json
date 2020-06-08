@@ -1,0 +1,14 @@
+{
+  "tsserver.enable": false,
+  "tsserver.enableJavascript": false,
+  "solargraph.promptDownload": true,
+  "solargraph.completion": true,
+  "solargraph.hover": true,
+  "solargraph.autoformat": false,
+  "solargraph.formatting": true,
+  "solargraph.diagnostics": true,
+  "sh.enable": true,
+  "diagnostic-languageserver.filetypes": {
+    "sh": "shellcheck"
+  }
+}
