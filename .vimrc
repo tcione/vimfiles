@@ -103,7 +103,7 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-set synmaxcol=200
+set synmaxcol=1000
 
 " Always show the status line
 set laststatus=2
@@ -139,8 +139,8 @@ set linebreak
 set tw=1000
 set wm=2
 
-" Using old regexp engine make the editor faster
-set re=1
+" Using new regexp engine make the editor faster
+set re=0
 
 command! -nargs=* Wrap set wrap linebreak nolist
 
