@@ -21,6 +21,8 @@ set clipboard=unnamed
 set t_Co=256
 
 set termguicolors
+set noruler
+set noshowcmd
 
 " Remap leader for nice combos
 let mapleader = ","
