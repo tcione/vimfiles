@@ -1,5 +1,5 @@
 {
-  "tsserver.enable": false,
+  "tsserver.enable": true,
   "tsserver.enableJavascript": false,
   "solargraph.promptDownload": true,
   "solargraph.completion": true,
