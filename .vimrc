@@ -206,17 +206,18 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-scripts/PreserveNoEOL'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'neoclide/coc.nvim', {'branch': 'master'}
 Plug 'tpope/vim-abolish'
 Plug 'itchyny/lightline.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'ap/vim-css-color'
+Plug 'gko/vim-coloresque'
 
 " Tools
 Plug 'mileszs/ack.vim'
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'janko-m/vim-test'
+Plug 'brooth/far.vim'
 
 " Misc
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -225,20 +226,27 @@ Plug 'vim-scripts/vim-misc'
 Plug 'junegunn/goyo.vim'
 Plug 'https://github.com/Alok/notational-fzf-vim'
 Plug 'pedrohdz/vim-yaml-folds'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
-" Linters/LSPs for Coc.nvim
-Plug 'amiralies/coc-flow', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-solargraph', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile'}
-Plug 'iamcco/coc-diagnostic', {'do': 'yarn install --frozen-lockfile'}
+" LSPs and stuff
+Plug 'neoclide/coc.nvim', {'branch': 'master'}
 
 call plug#end()
 
 filetype plugin indent on
 
+let g:coc_global_extensions = [
+  \ 'coc-flow',
+  \ 'coc-eslint',
+  \ 'coc-tsserver',
+  \ 'coc-solargraph',
+  \ 'coc-json',
+  \ 'coc-sh',
+  \ 'coc-diagnostic',
+  \ 'coc-styled-components',
+  \ 'coc-rls',
+  \ ]
 
 """"""""""""""""""""""""""""""""""""""
 " Manual syntax attribution
@@ -283,12 +291,18 @@ endfunction
 command! ProseMode call ProseMode()
 nmap \p :ProseMode<CR>
 
-""""""""""""""""""""""""""""""""""""""
-" A mode for human text :D
-""""""""""""""""""""""""""""""""""""""
+function! FormatJson()
+  system("python -m json.tool")
+endfunction
+command! FormatJson call FormatJson()
 
 " vim-test
-let g:test#strategy = 'vimterminal'
+if has('nvim')
+  let g:test#strategy = 'neovim'
+else
+  let g:test#strategy = 'vimterminal'
+endif
+
 " Enable whenever working with docker
 " let g:test#ruby#rspec#executable = 'docker-compose run --rm -e RAILS_ENV=test app rspec'
 " let g:test#ruby#rspec#executable = 'docker-compose exec app rspec'
@@ -302,6 +316,13 @@ let g:fzf_tags_command = 'ctags -R --exclude=.git --exclude=log --exclude=vendor
 " Enable C-j C-k navigation in completion
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+
+" nnoremap <c-j> :m .+1<CR>==
+" nnoremap <c-k> :m .-2<CR>==
+" inoremap <c-j> <Esc>:m .+1<CR>==gi
+" inoremap <c-k> <Esc>:m .-2<CR>==gi
+" vnoremap <c-j> :m '>+1<CR>gv=gv
+" vnoremap <c-k> :m '<-2<CR>gv=gv
 
 " vim-jsx
 let g:jsx_ext_required=0
@@ -317,7 +338,7 @@ let g:rustfmt_autosave = 1
 
 " notational vim
 let g:nv_search_paths = ['~/Documents/Notes']
-let g:polyglot_disabled = ['markdown']
+" let g:polyglot_disabled = ['markdown']
 
 set noshowmode
 let g:lightline = {
@@ -329,4 +350,3 @@ let g:lightline = {
       \ }
 
 set rtp+=/usr/local/opt/fzf
-
