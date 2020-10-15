@@ -5,7 +5,11 @@ git pull origin master
 function doIt() {
     cp .vimrc "$HOME/.vimrc"
     mkdir -p "$HOME/.vim"
+    mkdir -p "$HOME/.config"
     cp coc-settings.json "$HOME/.vim/coc-settings.json"
+    cp -r config/vim/ "$HOME/.config/"
+    cp -r config/nvim/ "$HOME/.config/"
+    cp coc-settings.json "$HOME/.config/nvim/"
 
     if [ ! -f "$HOME/.vim/autoload/plug.vim" ]; then
       curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
